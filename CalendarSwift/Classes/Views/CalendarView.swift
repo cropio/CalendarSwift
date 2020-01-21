@@ -79,7 +79,9 @@ public class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDat
     private var needCallDelegate = false
     private let cellHeight: CGFloat = 44
     private var calendarHeight: CGFloat {
-        myCollectionView.frame.minY + (cellHeight * CGFloat(itemsCount / 7))
+        let weeksCount = (CGFloat(itemsCount) / 7.0).rounded(.awayFromZero)
+        let collectionHeight = cellHeight * weeksCount + 8 * weeksCount
+        return myCollectionView.frame.minY + collectionHeight
     }
     private var itemsCount: Int {
         guard numOfDaysInMonth.count > currentMonthIndex-1 else {
